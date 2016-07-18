@@ -5,12 +5,10 @@ jsWarrior.turn = function(warrior) {
 
   if (warrior.check() == 'diamond') {
     warrior.collect();
+  } else if (warrior.getHealth() < 20 && warrior.getHealth() >= warrior._health) {
+    warrior.rest();
   } else if (warrior.check() == 'enemy') {
     warrior.attack();
-  } else if (warrior.getHealth() < warrior._health) {
-    warrior.walk();
-  } else if (warrior.getHealth() < 20) {
-    warrior.rest();
   } else {
     warrior.walk();
   }

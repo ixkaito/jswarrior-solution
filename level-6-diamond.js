@@ -8,16 +8,12 @@ jsWarrior.turn = function(warrior) {
     warrior._diamond = true;
   } else if (!warrior._diamond) {
     warrior.walk('backward');
+  } else if (warrior.getHealth() < warrior._health && warrior.getHealth() < 10) {
+    warrior.walk('backward');
+  } else if (warrior.getHealth() >= warrior._health && warrior.getHealth() < 20) {
+    warrior.rest();
   } else if (warrior.check() == 'enemy') {
     warrior.attack();
-  } else if (warrior.getHealth() < warrior._health) {
-    if (warrior.getHealth() < 10) {
-      warrior.walk('backward');
-    } else {
-      warrior.walk();
-    }
-  } else if (warrior.getHealth() < 20) {
-    warrior.rest();
   } else {
     warrior.walk();
   }

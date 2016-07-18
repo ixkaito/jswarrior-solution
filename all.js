@@ -3,16 +3,8 @@ jsWarrior.turn = function(warrior) {
     warrior._health = warrior.getHealth();
   }
 
-  warrior._full_health = (warrior.getHealth() >= 20);
-  warrior._low_health = (warrior.getHealth() < 10);
-  warrior._under_attack = (warrior.getHealth() < warrior._health);
-
   if (warrior.check() == 'wall') {
     warrior.pivot();
-  } else if (warrior._under_attack && warrior._low_health) {
-    warrior.walk('backward');
-  } else if (!warrior._under_attack && !warrior._full_health) {
-    warrior.rest();
   } else if (warrior.check() == 'diamond') {
     warrior.collect();
   } else if (warrior.check('backward') == 'diamond') {
@@ -24,6 +16,10 @@ jsWarrior.turn = function(warrior) {
     } else {
       warrior.walk('backward');
     }
+  } else if (warrior.getHealth() < warrior._health && warrior.getHealth() < 10) {
+    warrior.walk('backward');
+  } else if (warrior.getHealth() >= warrior._health && warrior.getHealth() < 20) {
+    warrior.rest();
   } else if (warrior.check() == 'enemy') {
     warrior.attack();
   } else {

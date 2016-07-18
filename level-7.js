@@ -5,16 +5,12 @@ jsWarrior.turn = function(warrior) {
 
   if (warrior.check() == 'wall') {
     warrior.pivot();
+  } else if (warrior.getHealth() < warrior._health && warrior.getHealth() < 10) {
+    warrior.walk('backward');
+  } else if (warrior.getHealth() >= warrior._health && warrior.getHealth() < 20) {
+    warrior.rest();
   } else if (warrior.check() == 'enemy') {
     warrior.attack();
-  } else if (warrior.getHealth() < warrior._health) {
-    if (warrior.getHealth() < 10) {
-      warrior.walk('backward');
-    } else {
-      warrior.walk();
-    }
-  } else if (warrior.getHealth() < 20) {
-    warrior.rest();
   } else {
     warrior.walk();
   }

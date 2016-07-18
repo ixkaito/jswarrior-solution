@@ -3,10 +3,10 @@ jsWarrior.turn = function(warrior) {
     warrior._health = warrior.getHealth();
   }
 
-  if (warrior.check() == 'enemy') {
-    warrior.attack();
-  } else if (warrior.getHealth() < 20 && warrior.getHealth() >= warrior._health) {
+  if (warrior.getHealth() < 20 && warrior.getHealth() >= warrior._health) {
     warrior.rest();
+  } else if (warrior.check() == 'enemy') {
+    warrior.attack();
   } else {
     warrior.walk();
   }
